@@ -15,7 +15,9 @@
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [Configuration](#configuration)
+- [Database Schema](#database-schema)
 - [Usage](#usage)
+- [Roadmap](#roadmap)
 - [Contributing](#contributing)
 - [License](#license)
 - [Support](#support)
@@ -35,6 +37,7 @@
 ## Tech Stack
 
 - **Frontend**: Swift + SwiftUI
+- **Data Persistence**: SwiftData for local caching
 - **Backend**: Supabase (PostgreSQL, Storage, Auth, RLS)
 - **Architecture**: MVVM with async/await
 - **Storage**: Supabase Storage for documents
@@ -138,6 +141,31 @@ For development, you can also use environment variables:
 - `SUPABASE_URL`: Your Supabase project URL
 - `SUPABASE_ANON_KEY`: Your Supabase anonymous key
 
+## Database Schema
+
+The application uses the following core tables in Supabase PostgreSQL:
+
+### Core Tables
+
+- **`users`**: User profiles and authentication data
+- **`products`**: Product catalog with SKUs, descriptions, and pricing
+- **`inventory`**: Current stock levels and locations
+- **`orders`**: Customer orders with status tracking
+- **`order_items`**: Individual items within orders
+- **`deliveries`**: Delivery tracking and status updates
+- **`stock_movements`**: Audit trail for all inventory changes
+- **`categories`**: Product categorization system
+- **`suppliers`**: Supplier information and contacts
+
+### Key Relationships
+
+- Products have many inventory records (for different locations)
+- Orders contain multiple order items
+- Deliveries are linked to orders and update inventory automatically
+- Stock movements track all changes with timestamps and reasons
+
+*Detailed SQL schema files will be provided in the `/database` directory as the project develops.*
+
 ## Usage
 
 ### Basic Operations
@@ -155,6 +183,38 @@ For development, you can also use environment variables:
 - **Multi-user**: Collaborate with team members using role-based access
 
 *Detailed usage documentation will be added as features are implemented.*
+
+## Roadmap
+
+### Phase 1: Foundation (Current)
+- [x] Project setup and README documentation
+- [ ] Xcode project structure and basic UI
+- [ ] Supabase integration and authentication
+- [ ] Core data models and database schema
+
+### Phase 2: Core Features
+- [ ] User authentication and registration
+- [ ] Basic product management (CRUD operations)
+- [ ] Inventory tracking and stock levels
+- [ ] Simple order creation and management
+
+### Phase 3: Advanced Features
+- [ ] Delivery tracking with automatic stock updates
+- [ ] File storage for invoices and documents
+- [ ] Dashboard with analytics and reporting
+- [ ] Multi-user support with role-based access
+
+### Phase 4: Polish & Optimization
+- [ ] Offline support with data synchronization
+- [ ] Performance optimization
+- [ ] Advanced reporting and exports
+- [ ] App Store deployment
+
+### Future Considerations
+- [ ] Integration with external accounting systems
+- [ ] Barcode scanning for product management
+- [ ] Push notifications for low stock alerts
+- [ ] API for third-party integrations
 
 ## Contributing
 
@@ -192,7 +252,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### Contact
 
-- **Email**: [your-email@example.com](mailto:your-email@example.com)
+- **Email**: [michal.talaga@example.com](mailto:michal.talaga@example.com)
 - **GitHub**: [@MichalTalaga17](https://github.com/MichalTalaga17)
 
 ---
